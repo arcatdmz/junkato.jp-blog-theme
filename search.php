@@ -4,15 +4,15 @@
       
         <div id="content" class="clearfix row">
         
-          <div id="main" class="col col-lg-8 clearfix" role="main">
+          <div id="main" class="col col-md-8 clearfix" role="main">
           
-            <div class=""><h1 class="page-title"><span><?php _e("Search Results for","bonestheme"); ?>:</span> <?php echo esc_attr(get_search_query()); ?></h1></div>
+            <ol class="breadcrumb"><li><a href="https://junkato.jp/ja/blog">Home</a></li><li>「<?php echo esc_attr(get_search_query()); ?>」<span><?php _e("の検索結果","bonestheme"); ?></span></li></ol>
 
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
             
             <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
               
-              <header>
+              <header class="article-header">
                 
                 <h3><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
                 
@@ -20,8 +20,8 @@
               
               </header> <!-- end article header -->
             
-              <section class="post_content">
-                <?php the_excerpt('<span class="read-more">' . __("Read more on","bonestheme") . ' "'.the_title('', '', false).'" &raquo;</span>'); ?>
+              <section class="post_content entry-content" style="padding-bottom: 0">
+                <?php the_excerpt('<span class="read-more">' . __("続きを読む <i class=\"fa fa-arrow-circle-right\"></i>","bonestheme") . ' "'.the_title('', '', false).'" &raquo;</span>'); ?>
             
               </section> <!-- end article section -->
               
@@ -51,11 +51,13 @@
             <!-- this area shows up if there are no results -->
             
             <article id="post-not-found">
+            <!--
                 <header>
-                  <h1><?php _e("Not Found", "bonestheme"); ?></h1>
+                  <h2><?php _e("見つかりませんでした", "bonestheme"); ?></h2>
                 </header>
+            -->
                 <section class="post_content">
-                  <p><?php _e("Sorry, but the requested resource was not found on this site.", "bonestheme"); ?></p>
+                  <p><?php _e("検索結果が見つかりませんでした。違う検索ワードで試してみてください。", "bonestheme"); ?></p>
                 </section>
                 <footer>
                 </footer>

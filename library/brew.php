@@ -11,7 +11,7 @@ Just pulling together all the various functions needed for BREW.
 
 function my_more_link( $link, $link_button ) {
             
-    return str_replace( $link_button, '<p><a href="' . get_permalink() . '" class="readmore btn btn-sm btn-primary ">' . __( 'Continue Reading...', 'bonestheme' ) . ' </a> </p>', $link );
+    return str_replace( $link_button, '<p><a href="' . get_permalink() . '" class="readmore btn btn-sm btn-primary ">' . __( '続きを読む <i class="fa fa-arrow-circle-right"></i>', 'bonestheme' ) . ' </a> </p>', $link );
 }
 
 add_filter( 'the_content_more_link', 'my_more_link', 10, 2 );
@@ -45,7 +45,7 @@ function emm_paginate($args = null) {
     $output = "";
     if ($pages > 1) {   
         $output .= "$before";
-        $ellipsis = "<li>...</li>";
+        $ellipsis = "<li><span>...</span></li>";
 
         if ($page > 1 && !empty($previouspage)) {
             $output .= "<li><a href='" . get_pagenum_link($page - 1) . "'>$previouspage</a></li>";
@@ -217,13 +217,18 @@ function page_has_comments_nav() {
 function brew_truncate_text( $string, $character_limit = 50, $truncation_indicator = '...' ) {
 
         $truncated = null == $string ? '' : $string;
-    if ( strlen( $string ) >= ( $character_limit + 1 ) ) {
+    //if ( strlen( $string ) >= ( $character_limit + 1 ) ) {
+    if ( mb_strlen( $string ) >= ( $character_limit + 1 ) ) {
 
-        $truncated = substr( $string, 0, $character_limit );
+        //$truncated = substr( $string, 0, $character_limit );
+        $truncated = mb_substr( $string, 0, $character_limit );
 
-        if ( substr_count( $truncated, ' ') > 1 ) {
-            $last_space = strrpos( $truncated, ' ' );
-            $truncated = substr( $truncated, 0, $last_space );
+        //if ( substr_count( $truncated, ' ') > 1 ) {
+        if ( mb_substr_count( $truncated, ' ') > 1 ) {
+            //$last_space = strrpos( $truncated, ' ' );
+            $last_space = mb_strrpos( $truncated, ' ' );
+            //$truncated = substr( $truncated, 0, $last_space );
+            $truncated = mb_substr( $truncated, 0, $last_space );
         } // end if
 
         $truncated = $truncated . $truncation_indicator;

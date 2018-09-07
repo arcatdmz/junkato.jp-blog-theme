@@ -11,7 +11,7 @@
 		<?php // Google Chrome Frame for IE ?>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title><?php if (is_front_page()) { bloginfo('name'); } else { wp_title(''); } ?></title>
+		<title><?php if (is_front_page()) { bloginfo('name'); } else { wp_title(''); } ?> | junkato.jp</title>
 
 		<?php // mobile meta (hooray!) ?>
 		<meta name="HandheldFriendly" content="True">
@@ -28,6 +28,7 @@
 		<meta name="msapplication-TileColor" content="#f01d4f">
 		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
 
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Droid+Sans" />
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
 		<?php // wordpress head functions ?>
@@ -44,7 +45,7 @@
     <header class="header">
 
       <nav role="navigation">
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-default navbar-fixed-top">
           <div class="container">
             <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
             <div class="navbar-header">

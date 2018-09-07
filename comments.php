@@ -22,7 +22,7 @@ The comments page for Bones
   <div id="single-post-nav">
     <ul class="pager">
 
-      <?php $trunc_limit = 30; ?>
+      <?php $trunc_limit = 20; ?>
 
       <?php if( '' != get_previous_post() ) { ?>
         <li class="previous">
@@ -49,6 +49,18 @@ The comments page for Bones
 	<ol class="commentlist">
 		<?php wp_list_comments( 'type=comment&callback=bones_comments' ); ?>
 	</ol>
+
+<?php $comments_by_type = &separate_comments($comments); ?>
+  <?php if ( ! empty( $comments_by_type['pings'] ) ) { ?>
+  <div id="pings">
+    <h3>
+      <?php _e( 'Trackbacks and Pingbacks:', 'bones' ); ?>
+    </h3>
+    <ol class="pinglist">
+      <?php wp_list_comments( 'type=pings&callback=list_pings' ); ?>
+    </ol>
+  </div><!-- /#pings -->
+  <?php } // end if ?>
 
 	<?php else : // this is displayed if there are no comments so far ?>
 
@@ -154,17 +166,3 @@ The comments page for Bones
 
 
 <?php endif; // if you delete this the sky will fall on your head ?>
-
-<?php $comments_by_type = &separate_comments($comments); ?>
-  <?php if ( ! empty( $comments_by_type['pings'] ) ) { ?>
-  <div id="pings">
-    <h3>
-      <?php _e( 'Trackbacks and Pingbacks:', 'bones' ); ?>
-    </h3>
-    <ol class="pinglist">
-      <?php wp_list_comments( 'type=pings&callback=list_pings' ); ?>
-    </ol>
-  </div><!-- /#pings -->
-  <?php } // end if ?>
-
-
